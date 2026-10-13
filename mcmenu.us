@@ -1,0 +1,993 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>McDonald's Menu With Prices | McMenus.us</title>
+<meta name="description" content="Explore McDonald's menu categories, burgers, breakfast, value meals, popular food items and nutrition information with McMenus.us.">
+
+<style>
+:root {
+    --red: #e31837;
+    --red-dark: #bd102b;
+    --dark: #202124;
+    --text: #666b73;
+    --light: #fff8f6;
+    --white: #ffffff;
+    --border: #ececef;
+    --shadow: 0 12px 35px rgba(32,33,36,.08);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 25px;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    color: var(--dark);
+    background: var(--white);
+    line-height: 1.8;
+    overflow-x: hidden;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+img {
+    display: block;
+    width: 100%;
+    object-fit: cover;
+}
+
+p {
+    color: var(--text);
+    margin-bottom: 18px;
+}
+
+h1,h2,h3 {
+    line-height: 1.25;
+    letter-spacing: -.6px;
+}
+
+h1 {
+    font-size: clamp(40px,5vw,64px);
+}
+
+h2 {
+    font-size: clamp(29px,3.5vw,42px);
+    margin-bottom: 20px;
+}
+
+h3 {
+    font-size: 21px;
+    margin-bottom: 12px;
+}
+
+.section {
+    width: min(1160px,90%);
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.eyebrow {
+    display: inline-block;
+    color: var(--red);
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 2px;
+    margin-bottom: 16px;
+}
+
+.section-title {
+    max-width: 740px;
+    margin-bottom: 38px;
+}
+
+.section-title.center {
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.section-title p {
+    max-width: 620px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* BUTTONS */
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    padding: 14px 23px;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 700;
+    transition: .25s ease;
+}
+
+.btn-primary {
+    background: var(--red);
+    color: var(--white);
+    border: 2px solid var(--red);
+}
+
+.btn-primary:hover {
+    background: var(--red-dark);
+    border-color: var(--red-dark);
+    transform: translateY(-2px);
+}
+
+.btn-secondary {
+    background: var(--white);
+    color: var(--dark);
+    border: 1px solid #dedee2;
+}
+
+.btn-secondary:hover {
+    border-color: var(--red);
+    color: var(--red);
+}
+
+/* HERO */
+
+.hero {
+    display: grid;
+    grid-template-columns: 1.05fr .95fr;
+    align-items: center;
+    gap: 55px;
+    padding-top: 55px;
+    padding-bottom: 65px;
+}
+
+.hero-content h1 {
+    max-width: 650px;
+    margin-bottom: 24px;
+}
+
+.hero-content > p {
+    max-width: 570px;
+    font-size: 16px;
+    line-height: 1.95;
+    margin-bottom: 28px;
+}
+
+.hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-bottom: 28px;
+}
+
+.hero-points {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px 16px;
+}
+
+.hero-points span {
+    color: #555a61;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.hero-visual {
+    position: relative;
+    padding: 10px;
+}
+
+.hero-visual > img {
+    height: 455px;
+    border-radius: 18px;
+}
+
+.image-label {
+    position: absolute;
+    left: -20px;
+    bottom: 32px;
+    display: flex;
+    align-items: center;
+    gap: 13px;
+    padding: 17px 20px;
+    background: var(--white);
+    border-radius: 10px;
+    box-shadow: var(--shadow);
+}
+
+.label-icon {
+    font-size: 29px;
+}
+
+.image-label strong,
+.image-label small {
+    display: block;
+}
+
+.image-label strong {
+    font-size: 13px;
+}
+
+.image-label small {
+    color: var(--text);
+    font-size: 11px;
+}
+
+/* INTRO */
+
+.intro {
+    padding-top: 40px;
+    padding-bottom: 65px;
+    border-top: 1px solid var(--border);
+}
+
+.intro p,
+.content-section p {
+    font-size: 15px;
+    line-height: 2;
+}
+
+/* CATEGORIES */
+
+.categories {
+    width: 100%;
+    padding: 75px max(5%,calc((100% - 1160px)/2)) 85px;
+    background: var(--light);
+}
+
+.category-grid {
+    display: grid;
+    grid-template-columns: repeat(3,minmax(0,1fr));
+    gap: 24px;
+}
+
+.category-card {
+    overflow: hidden;
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 11px;
+    transition: transform .3s ease,box-shadow .3s ease;
+}
+
+.category-card:hover {
+    transform: translateY(-6px);
+    box-shadow: var(--shadow);
+}
+
+.category-image {
+    position: relative;
+    overflow: hidden;
+}
+
+.category-image img {
+    height: 205px;
+    transition: transform .4s ease;
+}
+
+.category-card:hover .category-image img {
+    transform: scale(1.05);
+}
+
+.category-icon {
+    position: absolute;
+    bottom: 12px;
+    right: 12px;
+    width: 43px;
+    height: 43px;
+    display: grid;
+    place-items: center;
+    background: var(--white);
+    border-radius: 9px;
+    font-size: 20px;
+    box-shadow: 0 5px 15px rgba(0,0,0,.08);
+}
+
+.category-info {
+    padding: 22px;
+}
+
+.category-info h3 {
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+.category-info p {
+    font-size: 13px;
+    line-height: 1.85;
+    min-height: 70px;
+    margin-bottom: 17px;
+}
+
+.card-link,.text-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--red);
+    font-size: 13px;
+    font-weight: 800;
+}
+
+.category-card:hover .card-link b {
+    transform: translateX(4px);
+}
+
+/* POPULAR ITEMS */
+
+.popular {
+    padding-top: 85px;
+    padding-bottom: 80px;
+}
+
+.popular-grid {
+    display: grid;
+    grid-template-columns: repeat(3,minmax(0,1fr));
+    gap: 24px;
+}
+
+.popular-card {
+    overflow: hidden;
+    border: 1px solid var(--border);
+    border-radius: 11px;
+    background: var(--white);
+    transition: transform .3s ease,box-shadow .3s ease;
+}
+
+.popular-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow);
+}
+
+.popular-card > img {
+    height: 225px;
+}
+
+.popular-info {
+    padding: 22px;
+}
+
+.item-label {
+    display: inline-block;
+    color: var(--red);
+    background: #fff0f2;
+    border-radius: 4px;
+    padding: 5px 9px;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: .7px;
+    margin-bottom: 13px;
+}
+
+.popular-info h3 {
+    font-size: 20px;
+}
+
+.popular-info p {
+    font-size: 13px;
+    line-height: 1.85;
+    min-height: 70px;
+}
+
+.disclaimer {
+    margin-top: 22px;
+    font-size: 11px;
+}
+
+/* NUTRITION */
+
+.nutrition {
+    display: grid;
+    grid-template-columns: .95fr 1fr;
+    gap: 65px;
+    align-items: center;
+    padding-top: 55px;
+    padding-bottom: 90px;
+    border-top: 1px solid var(--border);
+}
+
+.nutrition-image img {
+    height: 390px;
+    border-radius: 13px;
+}
+
+.nutrition-content p {
+    font-size: 14px;
+    line-height: 1.95;
+}
+
+/* SEO CONTENT */
+
+.content-section {
+    padding-top: 25px;
+    padding-bottom: 65px;
+}
+
+.content-section .section-title {
+    margin-bottom: 25px;
+}
+
+/* FAQ */
+
+.faq {
+    width: 100%;
+    padding: 80px 5%;
+    background: #fafafa;
+}
+
+.faq-list {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.faq details {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    margin-bottom: 12px;
+}
+
+.faq summary {
+    list-style: none;
+    position: relative;
+    cursor: pointer;
+    padding: 20px 52px 20px 20px;
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 1.7;
+}
+
+.faq summary::-webkit-details-marker {
+    display: none;
+}
+
+.faq summary::after {
+    content: "+";
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--red);
+    font-size: 23px;
+    font-weight: 400;
+}
+
+.faq details[open] summary::after {
+    content: "−";
+}
+
+.faq details p {
+    padding: 0 20px 20px;
+    margin: 0;
+    font-size: 13px;
+    line-height: 1.9;
+}
+
+/* FINAL CTA */
+
+.cta {
+    padding-top: 85px;
+    padding-bottom: 95px;
+    text-align: center;
+}
+
+.cta h2 {
+    max-width: 680px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.cta p {
+    max-width: 620px;
+    margin: 0 auto 26px;
+    font-size: 14px;
+    line-height: 1.95;
+}
+
+/* TABLET */
+
+@media(max-width:950px) {
+    .hero {
+        gap: 30px;
+    }
+
+    .hero-visual > img {
+        height: 390px;
+    }
+
+    .category-grid {
+        grid-template-columns: repeat(2,minmax(0,1fr));
+    }
+
+    .nutrition {
+        gap: 35px;
+    }
+
+    .nutrition-image img {
+        height: 350px;
+    }
+}
+
+/* MOBILE */
+
+@media(max-width:650px) {
+    .section {
+        width: 90%;
+    }
+
+    .hero {
+        grid-template-columns: 1fr;
+        gap: 28px;
+        padding-top: 30px;
+        padding-bottom: 50px;
+    }
+
+    .hero-content h1 {
+        font-size: 39px;
+    }
+
+    .hero-content > p {
+        font-size: 14px;
+    }
+
+    .hero-visual {
+        padding: 0;
+    }
+
+    .hero-visual > img {
+        height: 290px;
+    }
+
+    .image-label {
+        left: 10px;
+        bottom: 15px;
+        padding: 12px 14px;
+    }
+
+    .hero-points {
+        gap: 10px 14px;
+    }
+
+    .hero-points span {
+        font-size: 10px;
+    }
+
+    h2 {
+        font-size: 30px;
+    }
+
+    .intro {
+        padding-top: 35px;
+        padding-bottom: 45px;
+    }
+
+    .intro p,.content-section p {
+        font-size: 14px;
+    }
+
+    .categories {
+        padding: 55px 5%;
+    }
+
+    .category-grid,.popular-grid {
+        grid-template-columns: 1fr;
+        gap: 18px;
+    }
+
+    .category-image img {
+        height: 220px;
+    }
+
+    .category-info p,.popular-info p {
+        min-height: auto;
+    }
+
+    .popular {
+        padding-top: 60px;
+        padding-bottom: 55px;
+    }
+
+    .popular-card > img {
+        height: 230px;
+    }
+
+    .nutrition {
+        grid-template-columns: 1fr;
+        gap: 28px;
+        padding-top: 50px;
+        padding-bottom: 60px;
+    }
+
+    .nutrition-image img {
+        height: 270px;
+    }
+
+    .faq {
+        padding: 55px 5%;
+    }
+
+    .faq summary {
+        padding: 17px 43px 17px 15px;
+        font-size: 13px;
+    }
+
+    .faq summary::after {
+        right: 15px;
+    }
+
+    .faq details p {
+        padding: 0 15px 17px;
+    }
+
+    .cta {
+        padding-top: 60px;
+        padding-bottom: 65px;
+    }
+}
+
+@media(max-width:380px) {
+    .hero-content h1 {
+        font-size: 33px;
+    }
+
+    .hero-actions {
+        flex-direction: column;
+    }
+
+    .hero-actions .btn {
+        width: 100%;
+    }
+
+    h2 {
+        font-size: 27px;
+    }
+}
+</style>
+</head>
+
+<body>
+<main>
+
+    <!-- HERO -->
+    <section class="hero section">
+        <div class="hero-content">
+            <span class="eyebrow">YOUR MCMENUS GUIDE</span>
+            <h1>Explore the McDonald's Menu With Prices</h1>
+            <p>
+                Discover popular McDonald's burgers, breakfast favorites,
+                chicken sandwiches, value meals, refreshing drinks, and
+                desserts. Explore menu categories and nutrition information
+                to plan your next meal.
+            </p>
+
+            <div class="hero-actions">
+                <a href="#categories" class="btn btn-primary">Explore Menu →</a>
+                <a href="#popular" class="btn btn-secondary">Popular Items</a>
+            </div>
+
+            <div class="hero-points">
+                <span>✓ Menu Categories</span>
+                <span>✓ Price Guides</span>
+                <span>✓ Nutrition Details</span>
+            </div>
+        </div>
+
+        <div class="hero-visual">
+            <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=1000&q=85"
+                 alt="Fresh burger with lettuce and tomato">
+            <div class="image-label">
+                <span class="label-icon">🍔</span>
+                <div>
+                    <strong>Your Favorites, All in One Place</strong>
+                    <small>Explore the menu with ease</small>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- INTRO -->
+    <section class="intro section">
+        <div class="section-title">
+            <span class="eyebrow">WELCOME TO MCMENUS.US</span>
+            <h2>Your Guide to McDonald's Food and Prices</h2>
+        </div>
+
+        <p>
+            <a href="https://mcmenus.us/">McDonald's Menu</a> helps you explore McDonald's menu options in one
+            convenient place. Whether you are looking for a classic burger,
+            a quick breakfast, a chicken sandwich, or a refreshing drink,
+            our menu guide makes it easier to discover popular choices.
+            Browse different categories, learn about individual menu items,
+            and review available price and nutrition information before
+            placing your order.
+        </p>
+
+        <p>
+            The menu includes a variety of burgers, chicken options, breakfast
+            favorites, sides, beverages, desserts, and meal combinations.
+            Comparing available choices can help you find food that suits
+            your preferences and budget. Restaurant prices, ingredients,
+            promotions, and availability may vary by location. Treat listed
+            prices as references and confirm current information with your
+            selected restaurant before ordering.
+        </p>
+    </section>
+
+    <!-- CATEGORIES -->
+    <section class="categories" id="categories">
+        <div class="section-title center">
+            <span class="eyebrow">FIND YOUR FAVORITE</span>
+            <h2>Explore Menu Categories</h2>
+            <p>Discover popular food and drink options in one place.</p>
+        </div>
+
+        <div class="category-grid">
+
+            <a class="category-card" href="https://mcmenus.us/">
+                <div class="category-image">
+                    <img src="https://images.unsplash.com/photo-1533089860892-a7c6f0a88666?auto=format&fit=crop&w=700&q=80"
+                         alt="Breakfast pancakes" loading="lazy">
+                    <span class="category-icon">☀</span>
+                </div>
+                <div class="category-info">
+                    <h3>Breakfast Menu</h3>
+                    <p>Explore breakfast sandwiches, biscuits, hotcakes, and hash browns.</p>
+                    <span class="card-link">Explore Breakfast <b>→</b></span>
+                </div>
+            </a>
+
+            <a class="category-card" href="https://mcmenus.us/">
+                <div class="category-image">
+                    <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=700&q=80"
+                         alt="Juicy cheeseburger" loading="lazy">
+                    <span class="category-icon">🍔</span>
+                </div>
+                <div class="category-info">
+                    <h3>Burgers Menu</h3>
+                    <p>Discover classic hamburgers, cheeseburgers, and signature favorites.</p>
+                    <span class="card-link">Explore Burgers <b>→</b></span>
+                </div>
+            </a>
+
+            <a class="category-card" href="https://mcmenus.us/">
+                <div class="category-image">
+                    <img src="https://images.unsplash.com/photo-1606755962773-d324e0a13086?auto=format&fit=crop&w=700&q=80"
+                         alt="Chicken sandwich" loading="lazy">
+                    <span class="category-icon">🍗</span>
+                </div>
+                <div class="category-info">
+                    <h3>Chicken & Fish</h3>
+                    <p>Find chicken sandwiches and other savory menu alternatives.</p>
+                    <span class="card-link">Explore Options <b>→</b></span>
+                </div>
+            </a>
+
+            <a class="category-card" href="https://mcmenus.us/mcdonalds-value-meals-menu-with-prices/">
+                <div class="category-image">
+                    <img src="https://images.unsplash.com/photo-1550547660-d9450f859349?auto=format&fit=crop&w=700&q=80"
+                         alt="Burger meal" loading="lazy">
+                    <span class="category-icon">★</span>
+                </div>
+                <div class="category-info">
+                    <h3>Value Meals</h3>
+                    <p>Compare meal combinations and explore available value options.</p>
+                    <span class="card-link">Explore Meals <b>→</b></span>
+                </div>
+            </a>
+
+            <a class="category-card" href="https://mcmenus.us/">
+                <div class="category-image">
+                    <img src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&w=700&q=80"
+                         alt="Freshly prepared coffee" loading="lazy">
+                    <span class="category-icon">☕</span>
+                </div>
+                <div class="category-info">
+                    <h3>McCafe & Drinks</h3>
+                    <p>Discover coffee, cold beverages, and other drink choices.</p>
+                    <span class="card-link">Explore Drinks <b>→</b></span>
+                </div>
+            </a>
+
+            <a class="category-card" href="https://mcmenus.us/mcdonalds-nutrition-calculator/">
+                <div class="category-image">
+                    <img src="https://images.unsplash.com/photo-1490645935967-10de6ba17061?auto=format&fit=crop&w=700&q=80"
+                         alt="Fresh food ingredients" loading="lazy">
+                    <span class="category-icon">✓</span>
+                </div>
+                <div class="category-info">
+                    <h3>Nutrition Guide</h3>
+                    <p>Review available calories, nutrients, and food information.</p>
+                    <span class="card-link">Explore Nutrition <b>→</b></span>
+                </div>
+            </a>
+
+        </div>
+    </section>
+
+    <!-- POPULAR ITEMS -->
+    <section class="popular section" id="popular">
+        <div class="section-title center">
+            <span class="eyebrow">POPULAR PICKS</span>
+            <h2>McDonald's Favorites</h2>
+            <p>Get familiar with well-known menu choices before ordering.</p>
+        </div>
+
+        <div class="popular-grid">
+
+            <article class="popular-card">
+                <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=600&q=80"
+                     alt="Classic burger" loading="lazy">
+                <div class="popular-info">
+                    <span class="item-label">BURGER FAVORITE</span>
+                    <h3>Big Mac</h3>
+                    <p>A signature burger with layered ingredients and distinctive sauce.</p>
+                    <a href="https://mcmenus.us/" class="text-link">View Menu Details →</a>
+                </div>
+            </article>
+
+            <article class="popular-card">
+                <img src="https://images.unsplash.com/photo-1553979459-d2229ba7433a?auto=format&fit=crop&w=600&q=80"
+                     alt="Cheeseburger with toppings" loading="lazy">
+                <div class="popular-info">
+                    <span class="item-label">CLASSIC CHOICE</span>
+                    <h3>Quarter Pounder</h3>
+                    <p>A burger option featuring familiar toppings and cheese.</p>
+                    <a href="https://mcmenus.us/" class="text-link">View Menu Details →</a>
+                </div>
+            </article>
+
+            <article class="popular-card">
+                <img src="https://images.unsplash.com/photo-1606755962773-d324e0a13086?auto=format&fit=crop&w=600&q=80"
+                     alt="Chicken sandwich" loading="lazy">
+                <div class="popular-info">
+                    <span class="item-label">CHICKEN CHOICE</span>
+                    <h3>McChicken</h3>
+                    <p>A familiar chicken sandwich for a change from classic burgers.</p>
+                    <a href="https://mcmenus.us/" class="text-link">View Menu Details →</a>
+                </div>
+            </article>
+
+        </div>
+
+        <p class="disclaimer">
+            Menu items, prices, and availability vary by location. Verify
+            current information with your local restaurant.
+        </p>
+    </section>
+
+    <!-- NUTRITION -->
+    <section class="nutrition section" id="nutrition">
+        <div class="nutrition-image">
+            <img src="https://images.unsplash.com/photo-1490645935967-10de6ba17061?auto=format&fit=crop&w=900&q=85"
+                 alt="Fresh food ingredients" loading="lazy">
+        </div>
+
+        <div class="nutrition-content">
+            <span class="eyebrow">KNOW WHAT YOU ORDER</span>
+            <h2>Understand Your Food Choices</h2>
+            <p>
+                Nutrition information can help you compare menu items and
+                understand calories, protein, carbohydrates, fat, and sodium.
+                Reviewing these details makes meal planning easier and helps
+                you choose options that suit your preferences.
+            </p>
+            <p>
+                Ingredients and allergen information are also important.
+                Recipes and preparation practices may vary, so check current
+                official product information if you have specific dietary
+                requirements or a food allergy.
+            </p>
+            <a href="https://mcmenus.us/mcdonalds-nutrition-calculator/" class="btn btn-primary">
+                Explore Nutrition →
+            </a>
+        </div>
+    </section>
+
+    <!-- ADDITIONAL SEO CONTENT -->
+    <section class="content-section section">
+        <div class="section-title">
+            <span class="eyebrow">PLAN YOUR NEXT MEAL</span>
+            <h2>Compare Prices and Discover More Options</h2>
+        </div>
+
+        <p>
+            Exploring the McDonald's menu before ordering can help you
+            understand the available food choices and estimate your spending.
+            Customers can compare individual sandwiches with meal combinations,
+            consider different sides and beverages, and look for promotions
+            offered by participating restaurants. A bundled meal may be
+            convenient when you want several items together, but comparing
+            the actual contents and prices is the best way to determine
+            whether it suits your order.
+        </p>
+
+        <p>
+            Prices can vary between locations, and delivery orders may include
+            different menu prices or additional fees. Restaurant hours,
+            breakfast availability, seasonal products, and promotions can
+            also change. Before making a special trip or placing a large order,
+            check the current local menu. For nutritional needs and allergy
+            concerns, consult official product information and contact the
+            restaurant when necessary.
+        </p>
+
+        <p>
+            McMenus.us is designed to make menu research convenient by bringing
+            categories and useful reference information together. From breakfast
+            sandwiches and classic burgers to chicken, drinks, sides, and
+            desserts, visitors can explore different options and learn more
+            about popular menu items. Use this guide as a starting point,
+            then verify current prices, ingredients, and availability with
+            your selected restaurant for the most accurate ordering information.
+        </p>
+    </section>
+
+    <!-- FAQ -->
+    <section class="faq">
+        <div class="section-title center">
+            <span class="eyebrow">QUICK ANSWERS</span>
+            <h2>Frequently Asked Questions</h2>
+        </div>
+
+        <div class="faq-list">
+            <details>
+                <summary>Are McDonald's menu prices the same everywhere?</summary>
+                <p>
+                    No. Prices can vary by restaurant, location, and ordering
+                    method. Check your selected restaurant for current prices.
+                </p>
+            </details>
+
+            <details>
+                <summary>Where can I find breakfast menu information?</summary>
+                <p>
+                    Explore the breakfast category to learn about available
+                    items and review current listed prices.
+                </p>
+            </details>
+
+            <details>
+                <summary>Can I check calories and nutrition information?</summary>
+                <p>
+                    Yes. Visit the nutrition guide and consult official
+                    McDonald's information for current product details.
+                </p>
+            </details>
+
+            <details>
+                <summary>Is McMenus.us the official McDonald's website?</summary>
+                <p>
+                    No. McMenus.us is an independent informational website
+                    and is not affiliated with or endorsed by McDonald's
+                    Corporation.
+                </p>
+            </details>
+        </div>
+    </section>
+
+    <!-- FINAL CALL TO ACTION -->
+    <section class="cta section">
+        <span class="eyebrow">EXPLORE MCMENUS.US</span>
+        <h2>Your Next Favorite Meal Starts Here</h2>
+        <p>
+            Browse menu categories, discover popular items, and review
+            useful food information before placing your next order.
+        </p>
+        <a href="https://mcmenus.us/" class="btn btn-primary">
+            Explore the Menu →
+        </a>
+    </section>
+
+</main>
+</body>
+</html>
